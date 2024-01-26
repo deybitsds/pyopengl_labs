@@ -2,7 +2,7 @@ from OpenGL.GL import *
 from OpenGL.GLUT import *
 import numpy as np
 
-WIDTH, HEIGHT = 800, 800
+WIDTH, HEIGHT = 600, 600
 C = [[0] * 1 for _ in range(8)]
 
 
@@ -32,7 +32,7 @@ def display():
     ejes()  # dibuja los ejes
     glColor3f(1.0, 0.0, 0.0)  # color rojo
 
-    # Definir los puntos del tercer cubo
+    # Definir los puntos del cubo
     cubo = [
     [-2.0, -2.0, -2.0, 1.0],
     [0.0, -2.0, -2.0, 1.0],
@@ -44,14 +44,14 @@ def display():
     [-2.0, 0.0, 0.0, 1.0]
 ]
 
-    # Calcular el vector de la línea de rotación para el tercer cubo
+    # Calcular el vector de la línea de rotación para el cubo
     vector_rotacion = [1, 2, 1]
 
     # Normalizar el vector de rotación
     norma = np.linalg.norm(vector_rotacion)
     vector_rotacion = [v / norma for v in vector_rotacion]
 
-    # Construir la matriz de rotación 3D para el tercer cubo
+    # Construir la matriz de rotación 3D para el cubo
     angulo = np.radians(30)
     cos_theta = np.cos(angulo)
     sin_theta = np.sin(angulo)
@@ -63,10 +63,10 @@ def display():
         [0, 0, 0, 1]
     ]
 
-    # Realizar la transformación para el tercer cubo
+    # Realizar la transformación para el cubo
     cubo_rotado = [np.dot(mat_rotacion, np.array(p)).tolist() for p in cubo]
 
-    # Dibujar el tercer cubo original
+    # Dibujar el cubo original
     glPolygonMode(GL_FRONT_AND_BACK, GL_LINE)
     glBegin(GL_QUADS)
     for i in range(0, 4):
@@ -84,7 +84,7 @@ def display():
         glVertex3f(cubo[i + 4][0], cubo[i + 4][1], cubo[i + 4][2])
         glEnd()
 
-    # Dibujar el tercer cubo rotado
+    # Dibujar el cubo rotado
     glColor3f(0.0, 1.0, 0.0)  # color verde
     glBegin(GL_QUADS)
     for i in range(0, 4):
@@ -102,6 +102,13 @@ def display():
         glVertex3f(cubo_rotado[i + 4][0], cubo_rotado[i + 4][1], cubo_rotado[i + 4][2])
         glEnd()
 
+
+    glColor3f(0.0, 1.0, 1.0)  # Color cyan
+    glBegin(GL_LINES)
+    glVertex3f(0, 0, 0)
+    glVertex3f(7, 7, 7)
+    glEnd()
+
     glutSwapBuffers()
 
 
@@ -112,6 +119,7 @@ def ini():
     glOrtho(-3, 3, -3, 3, -3, 3)
     glMatrixMode(GL_MODELVIEW)
     glLoadIdentity()
+    glRotatef(45.0, 3.0, 3.0, 3.0)
 
 
 def main():
@@ -119,7 +127,7 @@ def main():
     glutInitDisplayMode(GLUT_DOUBLE | GLUT_RGB | GLUT_DEPTH)
     glutInitWindowSize(WIDTH, HEIGHT)
     glutInitWindowPosition(0, 0)
-    glutCreateWindow("Rotación Tercer Cubo 3D")
+    glutCreateWindow("Rotacion Tercer Cubo 3D")
     glutDisplayFunc(display)
     ini()
     glutMainLoop()

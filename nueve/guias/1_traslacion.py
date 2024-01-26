@@ -2,7 +2,7 @@ from OpenGL.GL import *
 from OpenGL.GLUT import *
 from OpenGL.GLU import *
 
-WIDTH, HEIGHT = 800, 800
+WIDTH, HEIGHT = 400, 400
 C = [[0] * 1 for _ in range(4)]
 
 def multiplicacion(A, FA, CA, B, FB, CB, C):

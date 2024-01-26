@@ -2,7 +2,7 @@ from OpenGL.GL import *
 from OpenGL.GLUT import *
 import numpy as np
 
-WIDTH, HEIGHT = 800, 800
+WIDTH, HEIGHT = 600, 600
 C = [[0] * 1 for _ in range(4)]
 
 
@@ -35,9 +35,9 @@ def display():
     # Definir los puntos del tetraedro
     tetraedro = [
         [0.0, 0.0, 0.0, 1.0],
-        [1.0, 0.0, 0.0, 1.0],
-        [0.5, 0.866, 0.0, 1.0],
-        [0.5, 0.288, 0.816, 1.0]
+        [1.0*15, 0.0, 0.0, 1.0],
+        [0.5*15, 0.866*15, 0.0, 1.0],
+        [0.5*15, 0.288*15, 0.816*15, 1.0]
     ]
 
     # Calcular el punto medio de la línea
@@ -81,6 +81,13 @@ def display():
     glVertex3f(tetraedro_rotado[0][0], tetraedro_rotado[0][1], tetraedro_rotado[0][2])
     glEnd()
 
+        # Dibujar la recta celeste que pasa por los puntos [2,1,0] y [6,5,0]
+    glColor3f(0.0, 0.8, 1.0)  # color celeste
+    glBegin(GL_LINES)
+    glVertex3f(0, -1, 0)
+    glVertex3f(45, 44, 0)
+    glEnd()
+
     glutSwapBuffers()
 
 
@@ -88,9 +95,10 @@ def ini():
     glClearColor(0.0, 0.0, 0.0, 1.0)
     glMatrixMode(GL_PROJECTION)
     glLoadIdentity()
-    glOrtho(-2, 2, -2, 2, -2, 2)
+    glOrtho(-50.0, 50.0, -50.0, 50.0, -50.0, 50.0)
     glMatrixMode(GL_MODELVIEW)
     glLoadIdentity()
+    glRotatef(45.0, 3.0, 3.0, 3.0)
 
 
 def main():

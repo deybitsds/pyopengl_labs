@@ -2,7 +2,7 @@ from OpenGL.GLU import *
 from OpenGL.GL import *
 from OpenGL.GLUT import *
 
-WIDTH, HEIGHT = 800, 800
+WIDTH, HEIGHT = 600, 600
 C = [[0] * 1 for _ in range(4)]
 
 
